@@ -19,8 +19,8 @@ router.get("/jackets",async(req,res)=>{
 
     let page = req.query.page
     try {
-        let denim = await Denim.find().limit(6).skip((page-1)*6).lean().exec();
-        return res.status(200).send(denim)
+        let jacket = await Jacket.find().limit(6).skip((page-1)*6).lean().exec();
+        return res.status(200).send(jacket)
 
     } catch (e) {
         return res.status(500).send(e.message)
