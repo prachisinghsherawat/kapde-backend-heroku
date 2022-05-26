@@ -17,8 +17,9 @@ router.post("/kurti",async(req,res)=>{
 
 router.get("/kurti",async(req,res)=>{
 
+    let page = req.query.page
     try {
-        let kurti = await Kurti.find().lean().exec();
+        let kurti = await Kurti.find().limit(6).skip((page-1)*6).lean().exec();
         return res.status(200).send(kurti)
 
     } catch (e) {
