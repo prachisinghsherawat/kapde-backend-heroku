@@ -17,8 +17,10 @@ router.post("/tops",async(req,res)=>{
 
 router.get("/tops",async(req,res)=>{
 
+    let page = req.query.page
+
     try {
-        let top = await Top.find().lean().exec();
+        let top = await Top.find()..limit(6).skip((page-1)*6).lean().exec();
         return res.status(200).send(top)
 
 
