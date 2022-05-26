@@ -7,6 +7,7 @@ const Middi = require("../models/middiModel");
 router.post("/middi",async(req,res)=>{
 
     try {
+        
         let middi = await Middi.create(req.body);
         return res.status(200).send(middi)
 
@@ -17,8 +18,10 @@ router.post("/middi",async(req,res)=>{
 
 router.get("/middi",async(req,res)=>{
 
+    let page = req.query.page
+
     try {
-        let middi = await Middi.find().lean().exec();
+        let middi = await Middi.find().limit(6).skip((page-1)*6).lean().exec();
         return res.status(200).send(middi)
 
     } catch (e) {
