@@ -21,7 +21,7 @@ router.get("/middi",async(req,res)=>{
     let page = req.query.page
 
     try {
-        let middi = await Middi.find().limit(6).skip((page-1)*6).lean().exec();
+        let middi = await Middi.find().limit(6).skip((page-1)*6).lean().exec(); 
         return res.status(200).send(middi)
 
     } catch (e) {
