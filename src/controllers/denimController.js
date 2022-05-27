@@ -18,6 +18,7 @@ router.post("/denims",async(req,res)=>{
 router.get("/denims",async(req,res)=>{
 
     let page = req.query.page
+    
     try {
         let denim = await Denim.find().limit(6).skip((page-1)*6).lean().exec();
         return res.status(200).send(denim)
