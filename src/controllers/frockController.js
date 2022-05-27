@@ -18,6 +18,7 @@ router.post("/frock",async(req,res)=>{
 router.get("/frock",async(req,res)=>{
 
     let page = req.query.page
+    
     try {
         let frock = await Frock.find().limit(6).skip((page-1)*6).lean().exec();
         return res.status(200).send(frock)
